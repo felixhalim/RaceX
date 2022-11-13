@@ -24,6 +24,15 @@ import re
 EXECUTION_INDICATOR = ["->prepare"]
 SQL_CRUD = ["CREATE", "INSERT", "UPDATE", "DELETE", "SELECT", "ALTER", "DROP"]
 TABLE_INDICATOR = ["FROM", "UPDATE", "INTO", "TABLE", "JOIN"]
+HEADER = "\033[95m"
+BLUE = "\033[94m"
+CYAN = "\033[96m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+FAIL = "\033[91m"
+ENDC = "\033[0m"
+BOLD = "\033[1m"
+UNDERLINE = "\033[4m"
 
 
 def read_file(file_name):
@@ -41,11 +50,19 @@ def read_file(file_name):
 
 
 def print_welcome_banner():
-    print("### RaceX V1.0 ###\n")
+    welcome_banner = """
+     _____            _____ ________   __ __      ____   ___  
+    |  __ \     /\   / ____|  ____\ \ / / \ \    / /_ | / _ \ 
+    | |__) |   /  \ | |    | |__   \ V /   \ \  / / | || | | |
+    |  _  /   / /\ \| |    |  __|   > <     \ \/ /  | || | | |
+    | | \ \  / ____ \ |____| |____ / . \     \  /   | || |_| |
+    |_|  \_\/_/    \_\_____|______/_/ \_\     \/    |_(_)___/                                                                                 
+    """
+    print(f"{GREEN}{welcome_banner}{ENDC}\n")
 
 
 def print_farewell_banner():
-    print("### THANK YOU FOR USING - RaceX V1.0 ###")
+    print(f"{GREEN}# # # THANK YOU FOR USING - RaceX V1.0 # # #{ENDC}")
 
 
 def contain_exe_indicator(code_statement):
@@ -131,17 +148,26 @@ def print_traces(traces, summary=False):
     if summary == "-min":
         summary = True
     for i, t in enumerate(traces):
-        print(f"- Path[{i+1}]")
+        print(f"{BLUE}- Path[{i+1}]{ENDC}")
         for i, path in enumerate(t):
+            clean_path = path.strip().rsplit(" ", 1)
+            execution_statement = clean_path[0]
+            filename_linenumber = clean_path[1].split(":")
+            filename = filename_linenumber[0]
+            linenumber = filename_linenumber[1]
             if summary:
-                line_number = re.split(" ", path)[-1]
-                print(f"  {line_number.strip()}", end="")
+                print(
+                    f"  {YELLOW}{filename}{ENDC}:{BOLD}{linenumber}{ENDC}",
+                    end="",
+                )
                 if i != len(t) - 1:
-                    print("  ->", end="")
+                    print(f"{CYAN}  ->{ENDC}", end="")
                 else:
                     print("")
             else:
-                print(f"  - {path}", end="")
+                print(
+                    f"  - {execution_statement} {YELLOW}{filename}{ENDC}:{BOLD}{linenumber}{ENDC}"
+                )
         print("")
 
 
@@ -170,8 +196,8 @@ def unique_lol(list_of_list):
 
 
 def analyze(traces):
-    print("[*] Basic Info")
-    print(f"Table(s) Detected")
+    print(f"{GREEN}[*] Basic Info {ENDC}")
+    print(f"{CYAN}Table(s) Detected{ENDC}")
     tables = set(flatten([extract_table(l) for t in traces for l in t]))
     for i, table in enumerate(tables):
         print(f"({i+1}). {table}")
@@ -179,22 +205,21 @@ def analyze(traces):
 
     trace_results = analyze_traces(traces, tables)
 
-    print("[*] Potential Path(s) detected")
+    print(f"{GREEN}[*] Potential Path(s) detected{ENDC}")
     for table, traces in trace_results.items():
-        print(f"Table({table}):")
+        print(f"{CYAN}Table({table}):{ENDC}")
         traces = unique_lol(traces)
         print_traces(traces)
 
-    print("[*] Path(s) Summary")
+    print(f"{GREEN}[*] Path(s) Summary{ENDC}")
     for table, traces in trace_results.items():
-        print(f"Table({table}):")
+        print(f"{CYAN}Table({table}):{ENDC}")
         traces = unique_lol(traces)
         print_traces(traces, "-min")
 
 
 def main(args):
     print_welcome_banner()
-
     log = read_file(args.f)
     traces = parse_traces(log)
     unique_traces = unique_lol(traces)
