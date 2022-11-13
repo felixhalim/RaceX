@@ -1,0 +1,178 @@
+TRACE START [2022-11-12 12:53:13.077736]
+    0.0173     420016   -> {main}() /var/www/index.php:0
+    0.0173     420312     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0180     463576     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0181     463688     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0181     464272     -> PDOStatement->execute() /var/www/index.php:19
+    0.0221     481184     -> PDO->prepare($statement = 'SELECT name FROM users WHERE id=:user_id;') /var/www/index.php:36
+    0.0222     464704     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:37
+    0.0225     481704     -> PDOStatement->fetch() /var/www/index.php:39
+    0.0225     481704     -> PDO->prepare($statement = 'SELECT * FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:46
+    0.0225     464768     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:47
+    0.0241     482328     -> PDOStatement->fetchAll() /var/www/index.php:49
+    0.0241     484752     -> array_map($callback = class Closure { virtual $closure = "{closure}", public $parameter = ['$row' => '<required>'] }, ...$arrays = variadic(0 => [0 => ['user_id' => '1', 0 => '1', 'card_id' => '1', 1 => '1', 'balance' => '500', 2 => '500', 'id' => '1', 3 => '1', 'name' => 'Christmas', 4 => 'Christmas'], 1 => ['user_id' => '1', 0 => '1', 'card_id' => '2', 1 => '2', 'balance' => '500', 2 => '500', 'id' => '2', 3 => '2', 'name' => 'Halloween', 4 => 'Halloween']])) /var/www/index.php:51
+    0.0242     485200       -> {closure:/var/www/index.php:51-51}($row = ['user_id' => '1', 0 => '1', 'card_id' => '1', 1 => '1', 'balance' => '500', 2 => '500', 'id' => '1', 3 => '1', 'name' => 'Christmas', 4 => 'Christmas']) /var/www/index.php:51
+    0.0242     485200       -> {closure:/var/www/index.php:51-51}($row = ['user_id' => '1', 0 => '1', 'card_id' => '2', 1 => '2', 'balance' => '500', 2 => '500', 'id' => '2', 3 => '2', 'name' => 'Halloween', 4 => 'Halloween']) /var/www/index.php:51
+    0.0242     485184     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0242     467800     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:106
+    0.0245     485088     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0245     485536     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0246     485536     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0247     332912
+TRACE END   [2022-11-12 12:53:13.085219]
+
+TRACE START [2022-11-12 12:53:13.698159]
+    0.0017     417264   -> {main}() /var/www/index.php:0
+    0.0018     417560     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0024     460824     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0025     460936     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0025     461520     -> PDOStatement->execute() /var/www/index.php:19
+    0.0028     478432     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0029     478872     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0029     478872     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0029     478872     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0029     478872     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0029     478872     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0029     478432     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0029     462032     -> PDOStatement->execute($bound_input_params = ['user_id' => 0]) /var/www/index.php:106
+    0.0034     479080     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0036     328512
+TRACE END   [2022-11-12 12:53:13.700032]
+
+TRACE START [2022-11-12 12:54:06.920433]
+    0.0043     420224   -> {main}() /var/www/index.php:0
+    0.0043     420520     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0050     463784     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0051     463896     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0051     464480     -> PDOStatement->execute() /var/www/index.php:19
+    0.0054     481392     -> PDO->prepare($statement = 'SELECT name FROM users WHERE id=:user_id;') /var/www/index.php:36
+    0.0054     464912     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:37
+    0.0056     481912     -> PDOStatement->fetch() /var/www/index.php:39
+    0.0056     481912     -> PDO->prepare($statement = 'SELECT * FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:46
+    0.0056     464976     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:47
+    0.0059     482536     -> PDOStatement->fetchAll() /var/www/index.php:49
+    0.0059     484960     -> array_map($callback = class Closure { virtual $closure = "{closure}", public $parameter = ['$row' => '<required>'] }, ...$arrays = variadic(0 => [0 => ['user_id' => '1', 0 => '1', 'card_id' => '1', 1 => '1', 'balance' => '500', 2 => '500', 'id' => '1', 3 => '1', 'name' => 'Christmas', 4 => 'Christmas'], 1 => ['user_id' => '1', 0 => '1', 'card_id' => '2', 1 => '2', 'balance' => '500', 2 => '500', 'id' => '2', 3 => '2', 'name' => 'Halloween', 4 => 'Halloween']])) /var/www/index.php:51
+    0.0059     485408       -> {closure:/var/www/index.php:51-51}($row = ['user_id' => '1', 0 => '1', 'card_id' => '1', 1 => '1', 'balance' => '500', 2 => '500', 'id' => '1', 3 => '1', 'name' => 'Christmas', 4 => 'Christmas']) /var/www/index.php:51
+    0.0060     485408       -> {closure:/var/www/index.php:51-51}($row = ['user_id' => '1', 0 => '1', 'card_id' => '2', 1 => '2', 'balance' => '500', 2 => '500', 'id' => '2', 3 => '2', 'name' => 'Halloween', 4 => 'Halloween']) /var/www/index.php:51
+    0.0060     485392     -> is_numeric($value = '3') /var/www/index.php:75
+    0.0060     485392     -> in_array($needle = '1', $haystack = [0 => '1', 1 => '2']) /var/www/index.php:78
+    0.0060     485392     -> in_array($needle = '2', $haystack = [0 => '1', 1 => '2']) /var/www/index.php:81
+    0.0060     485392     -> PDO->prepare($statement = 'SELECT balance FROM owns where user_id=:user_id AND card_id=:from_card;') /var/www/index.php:85
+    0.0060     467976     -> PDOStatement->execute($bound_input_params = ['user_id' => '1', 'from_card' => '1']) /var/www/index.php:86
+    0.0062     485128     -> PDOStatement->fetch() /var/www/index.php:88
+    0.0062     485128     -> PDO->prepare($statement = 'UPDATE owns SET balance = balance + :amount WHERE user_id=:user_id AND card_id=:to_card;') /var/www/index.php:93
+    0.0062     468024     -> PDOStatement->execute($bound_input_params = ['amount' => '3', 'user_id' => '1', 'to_card' => '2']) /var/www/index.php:94
+    0.0191     468864     -> PDO->prepare($statement = 'UPDATE owns SET balance = balance - :amount WHERE user_id=:user_id AND card_id=:from_card;') /var/www/index.php:96
+    0.0192     468072     -> PDOStatement->execute($bound_input_params = ['amount' => '3', 'user_id' => '1', 'from_card' => '1']) /var/www/index.php:97
+    0.0328     468864     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0328     468056     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:106
+    0.0331     485296     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0331     485744     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0332     485744     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0333     332992
+TRACE END   [2022-11-12 12:54:06.949474]
+
+TRACE START [2022-11-12 12:54:07.841484]
+    0.0035     417248   -> {main}() /var/www/index.php:0
+    0.0036     417544     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0043     460808     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0043     460920     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0044     461504     -> PDOStatement->execute() /var/www/index.php:19
+    0.0046     478416     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0047     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0047     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0047     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0047     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0047     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0047     478416     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0048     462016     -> PDOStatement->execute($bound_input_params = ['user_id' => 0]) /var/www/index.php:106
+    0.0052     479064     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0053     328496
+TRACE END   [2022-11-12 12:54:07.843310]
+
+TRACE START [2022-11-12 12:54:35.898560]
+    0.0045     420224   -> {main}() /var/www/index.php:0
+    0.0045     420520     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0051     463784     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0051     463896     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0052     464480     -> PDOStatement->execute() /var/www/index.php:19
+    0.0054     481392     -> PDO->prepare($statement = 'SELECT name FROM users WHERE id=:user_id;') /var/www/index.php:36
+    0.0054     464912     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:37
+    0.0056     481912     -> PDOStatement->fetch() /var/www/index.php:39
+    0.0056     481912     -> PDO->prepare($statement = 'SELECT * FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:46
+    0.0056     464976     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:47
+    0.0058     482536     -> PDOStatement->fetchAll() /var/www/index.php:49
+    0.0059     484960     -> array_map($callback = class Closure { virtual $closure = "{closure}", public $parameter = ['$row' => '<required>'] }, ...$arrays = variadic(0 => [0 => ['user_id' => '1', 0 => '1', 'card_id' => '1', 1 => '1', 'balance' => '497', 2 => '497', 'id' => '1', 3 => '1', 'name' => 'Christmas', 4 => 'Christmas'], 1 => ['user_id' => '1', 0 => '1', 'card_id' => '2', 1 => '2', 'balance' => '503', 2 => '503', 'id' => '2', 3 => '2', 'name' => 'Halloween', 4 => 'Halloween']])) /var/www/index.php:51
+    0.0059     485408       -> {closure:/var/www/index.php:51-51}($row = ['user_id' => '1', 0 => '1', 'card_id' => '1', 1 => '1', 'balance' => '497', 2 => '497', 'id' => '1', 3 => '1', 'name' => 'Christmas', 4 => 'Christmas']) /var/www/index.php:51
+    0.0059     485408       -> {closure:/var/www/index.php:51-51}($row = ['user_id' => '1', 0 => '1', 'card_id' => '2', 1 => '2', 'balance' => '503', 2 => '503', 'id' => '2', 3 => '2', 'name' => 'Halloween', 4 => 'Halloween']) /var/www/index.php:51
+    0.0059     485392     -> is_numeric($value = '10') /var/www/index.php:75
+    0.0059     485392     -> in_array($needle = '1', $haystack = [0 => '1', 1 => '2']) /var/www/index.php:78
+    0.0059     485392     -> in_array($needle = '2', $haystack = [0 => '1', 1 => '2']) /var/www/index.php:81
+    0.0059     485392     -> PDO->prepare($statement = 'SELECT balance FROM owns where user_id=:user_id AND card_id=:from_card;') /var/www/index.php:85
+    0.0060     467976     -> PDOStatement->execute($bound_input_params = ['user_id' => '1', 'from_card' => '1']) /var/www/index.php:86
+    0.0061     485128     -> PDOStatement->fetch() /var/www/index.php:88
+    0.0061     485128     -> PDO->prepare($statement = 'UPDATE owns SET balance = balance + :amount WHERE user_id=:user_id AND card_id=:to_card;') /var/www/index.php:93
+    0.0061     468024     -> PDOStatement->execute($bound_input_params = ['amount' => '10', 'user_id' => '1', 'to_card' => '2']) /var/www/index.php:94
+    0.0126     468864     -> PDO->prepare($statement = 'UPDATE owns SET balance = balance - :amount WHERE user_id=:user_id AND card_id=:from_card;') /var/www/index.php:96
+    0.0126     468072     -> PDOStatement->execute($bound_input_params = ['amount' => '10', 'user_id' => '1', 'from_card' => '1']) /var/www/index.php:97
+    0.0210     468864     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0211     468056     -> PDOStatement->execute($bound_input_params = ['user_id' => '1']) /var/www/index.php:106
+    0.0213     485296     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0213     485744     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0214     485744     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0215     332992
+TRACE END   [2022-11-12 12:54:35.915597]
+
+TRACE START [2022-11-12 12:54:36.822491]
+    0.0058     417248   -> {main}() /var/www/index.php:0
+    0.0058     417544     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0065     460808     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0065     460920     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0065     461504     -> PDOStatement->execute() /var/www/index.php:19
+    0.0068     478416     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0068     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0068     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0069     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0069     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0069     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0069     478416     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0069     462016     -> PDOStatement->execute($bound_input_params = ['user_id' => 0]) /var/www/index.php:106
+    0.0072     479064     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0073     328496
+TRACE END   [2022-11-12 12:54:36.824052]
+
+TRACE START [2022-11-12 12:54:37.134455]
+    0.0040     418904   -> {main}() /var/www/index.php:0
+    0.0040     419200     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0047     462464     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0047     462576     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0047     463160     -> PDOStatement->execute() /var/www/index.php:19
+    0.0050     480072     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0050     480512     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0050     480512     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0050     480512     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0050     480512     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0050     480512     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0050     480072     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0050     463672     -> PDOStatement->execute($bound_input_params = ['user_id' => 0]) /var/www/index.php:106
+    0.0053     480720     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0054     329208
+TRACE END   [2022-11-12 12:54:37.135941]
+
+TRACE START [2022-11-12 12:54:37.974399]
+    0.0031     417248   -> {main}() /var/www/index.php:0
+    0.0031     417544     -> PDO->__construct($dsn = 'mysql:host=mysql;dbname=test;port=3306', $username = 'root', $passwd = 'root') /var/www/index.php:10
+    0.0038     460808     -> PDO->setAttribute($attribute = 3, $value = 2) /var/www/index.php:12
+    0.0039     460920     -> PDO->prepare($statement = 'SELECT * FROM users;') /var/www/index.php:18
+    0.0039     461504     -> PDOStatement->execute() /var/www/index.php:19
+    0.0042     478416     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0042     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0042     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0042     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0042     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0042     478856     -> PDOStatement->fetch($how = 2) /var/www/index.php:27
+    0.0042     478416     -> PDO->prepare($statement = 'SELECT name, balance FROM owns LEFT JOIN cards ON card_id=id WHERE user_id=:user_id;') /var/www/index.php:105
+    0.0043     462016     -> PDOStatement->execute($bound_input_params = ['user_id' => 0]) /var/www/index.php:106
+    0.0046     479064     -> PDOStatement->fetch($how = 2) /var/www/index.php:109
+    0.0047     328496
+TRACE END   [2022-11-12 12:54:37.976067]
