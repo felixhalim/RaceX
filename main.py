@@ -24,15 +24,13 @@ import re
 EXECUTION_INDICATOR = ["->prepare"]
 SQL_CRUD = ["CREATE", "INSERT", "UPDATE", "DELETE", "SELECT", "ALTER", "DROP"]
 TABLE_INDICATOR = ["FROM", "UPDATE", "INTO", "TABLE", "JOIN"]
-HEADER = "\033[95m"
+
 BLUE = "\033[94m"
 CYAN = "\033[96m"
 GREEN = "\033[92m"
 YELLOW = "\033[93m"
-FAIL = "\033[91m"
 ENDC = "\033[0m"
 BOLD = "\033[1m"
-UNDERLINE = "\033[4m"
 
 
 def read_file(file_name):
