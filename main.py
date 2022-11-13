@@ -2,7 +2,7 @@
 
 """RaceX
 
-PHP XDebug Analyzer that checks potential PDO race condition
+A Static Log Analysis tool that process Xdebug log and output possible interleaving PHP PDO SQL queries.
 
 Usage:
     ./python main.py -f <xdebug_log.txt>
