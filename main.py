@@ -27,7 +27,14 @@ TABLE_INDICATOR = ["FROM", "UPDATE", "INTO", "TABLE", "JOIN"]
 
 
 def read_file(file_name):
+    """Reads input file
 
+    Args:
+        file_name (str): the input file e.g.: index.php
+
+    Returns:
+        list: a list of strings representing the file source code
+    """
     with open(file_name) as f:
         lines = f.readlines()
     return lines
@@ -42,7 +49,14 @@ def print_farewell_banner():
 
 
 def contain_exe_indicator(code_statement):
+    """Checks if a code statement contains SQL execution keyword via regex
 
+    Args:
+        code_statement (str): code statement to be checked
+
+    Returns:
+        list: a list of regex hit i.e. containing SQL execution keyword
+    """
     regex_pattern = f"({'|'.join(EXECUTION_INDICATOR)})"
     regex = re.compile(regex_pattern)
     matches = regex.findall(code_statement)
@@ -50,6 +64,14 @@ def contain_exe_indicator(code_statement):
 
 
 def parse_traces(log):
+    """Parses traces detected in Xdebug log file into list
+
+    Args:
+        log (list): a list of string representing the Xdebug log
+
+    Returns:
+        list: a list of list that represents Xdebug log splitted by trace
+    """
     traces = []
     trace = []
     for l in log:
@@ -63,7 +85,14 @@ def parse_traces(log):
 
 
 def extract_table(sql):
+    """Extracts SQL table(s) name detected in a SQL statement
 
+    Args:
+        sql (str): a string representing the SQL statement
+
+    Returns:
+        list: a unique list of string that represents SQL table name
+    """
     tables = []
     for indicator in TABLE_INDICATOR:
         if indicator in sql:
@@ -72,6 +101,15 @@ def extract_table(sql):
 
 
 def analyze_traces(traces, tables):
+    """Categorizes traces by table name
+
+    Args:
+        traces (list): a list of list that represents Xdebug log splitted by trace
+        tables (list): a unique list of string that represents SQL table name
+
+    Returns:
+        dict: a dictionary of table name as key and traces as value
+    """
     trace_results = {table: [] for table in tables}
     for trace in traces:
         trace_result = {table: [] for table in tables}
@@ -84,6 +122,12 @@ def analyze_traces(traces, tables):
 
 
 def print_traces(traces, summary=False):
+    """Prints traces in a readable format
+
+    Args:
+        traces (list): a list of list that represents Xdebug log splitted by trace
+        summary (str): a flag indicating whether min version is desired
+    """
     if summary == "-min":
         summary = True
     for i, t in enumerate(traces):
@@ -99,6 +143,30 @@ def print_traces(traces, summary=False):
             else:
                 print(f"  - {path}", end="")
         print("")
+
+
+def flatten(l):
+    """Flattens list of list
+
+    Args:
+        l (list): list of list to be flattened
+
+    Returns:
+        list: flattened list of list
+    """
+    return [item for sublist in l for item in sublist]
+
+
+def unique_lol(list_of_list):
+    """Uniquifies list of list
+
+    Args:
+        list_of_list (list): list of list to be uniquify
+
+    Returns:
+        list: uniquified list of list
+    """
+    return [list(elem) for elem in set(tuple(l) for l in list_of_list)]
 
 
 def analyze(traces):
@@ -122,14 +190,6 @@ def analyze(traces):
         print(f"Table({table}):")
         traces = unique_lol(traces)
         print_traces(traces, "-min")
-
-
-def flatten(l):
-    return [item for sublist in l for item in sublist]
-
-
-def unique_lol(list_of_list):
-    return [list(elem) for elem in set(tuple(l) for l in list_of_list)]
 
 
 def main(args):
