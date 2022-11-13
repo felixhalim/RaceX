@@ -134,7 +134,7 @@ def print_traces(traces, summary=False):
         print(f"- Path[{i+1}]")
         for i, path in enumerate(t):
             if summary:
-                line_number = re.split(":", re.split(" ", path)[-1])[-1]
+                line_number = re.split(" ", path)[-1]
                 print(f"  {line_number.strip()}", end="")
                 if i != len(t) - 1:
                     print("  ->", end="")
