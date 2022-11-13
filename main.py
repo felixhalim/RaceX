@@ -42,8 +42,12 @@ def read_file(file_name):
     Returns:
         list: a list of strings representing the file source code
     """
-    with open(file_name) as f:
-        lines = f.readlines()
+    try:
+        with open(file_name) as f:
+            lines = f.readlines()
+    except Exception as e:
+        print(f"# Error Detected in read_file() - {e}")
+        exit()
     return lines
 
 
@@ -87,15 +91,19 @@ def parse_traces(log):
     Returns:
         list: a list of list that represents Xdebug log splitted by trace
     """
-    traces = []
-    trace = []
-    for l in log:
-        if "TRACE END" in l:
-            traces.append(trace)
-            trace = []
-        elif contain_exe_indicator(l):
-            prepare_statement = re.split("->", l)[2]
-            trace.append(prepare_statement)
+    try:
+        traces = []
+        trace = []
+        for l in log:
+            if "TRACE END" in l:
+                traces.append(trace)
+                trace = []
+            elif contain_exe_indicator(l):
+                prepare_statement = re.split("->", l)[2]
+                trace.append(prepare_statement)
+    except Exception as e:
+        print(f"# Error Detected in parse_traces() - {e}")
+        exit()
     return traces
 
 
@@ -125,14 +133,18 @@ def analyze_traces(traces, tables):
     Returns:
         dict: a dictionary of table name as key and traces as value
     """
-    trace_results = {table: [] for table in tables}
-    for trace in traces:
-        trace_result = {table: [] for table in tables}
-        for line in trace:
-            for t in extract_table(line):
-                trace_result[t].append(line)
-        for t, v in trace_result.items():
-            trace_results[t].append(v)
+    try:
+        trace_results = {table: [] for table in tables}
+        for trace in traces:
+            trace_result = {table: [] for table in tables}
+            for line in trace:
+                for t in extract_table(line):
+                    trace_result[t].append(line)
+            for t, v in trace_result.items():
+                trace_results[t].append(v)
+    except Exception as e:
+        print(f"# Error Detected in analyze_traces() - {e}")
+        exit()
     return trace_results
 
 
@@ -143,30 +155,34 @@ def print_traces(traces, summary=False):
         traces (list): a list of list that represents Xdebug log splitted by trace
         summary (str): a flag indicating whether min version is desired
     """
-    if summary == "-min":
-        summary = True
-    for i, t in enumerate(traces):
-        print(f"{BLUE}- Path[{i+1}]{ENDC}")
-        for i, path in enumerate(t):
-            clean_path = path.strip().rsplit(" ", 1)
-            execution_statement = clean_path[0]
-            filename_linenumber = clean_path[1].split(":")
-            filename = filename_linenumber[0]
-            linenumber = filename_linenumber[1]
-            if summary:
-                print(
-                    f"  {YELLOW}{filename}{ENDC}:{BOLD}{linenumber}{ENDC}",
-                    end="",
-                )
-                if i != len(t) - 1:
-                    print(f"{CYAN}  ->{ENDC}", end="")
+    try:
+        if summary == "-min":
+            summary = True
+        for i, t in enumerate(traces):
+            print(f"{BLUE}- Path[{i+1}]{ENDC}")
+            for i, path in enumerate(t):
+                clean_path = path.strip().rsplit(" ", 1)
+                execution_statement = clean_path[0]
+                filename_linenumber = clean_path[1].split(":")
+                filename = filename_linenumber[0]
+                linenumber = filename_linenumber[1]
+                if summary:
+                    print(
+                        f"  {YELLOW}{filename}{ENDC}:{BOLD}{linenumber}{ENDC}",
+                        end="",
+                    )
+                    if i != len(t) - 1:
+                        print(f"{CYAN}  ->{ENDC}", end="")
+                    else:
+                        print("")
                 else:
-                    print("")
-            else:
-                print(
-                    f"  - {execution_statement} {YELLOW}{filename}{ENDC}:{BOLD}{linenumber}{ENDC}"
-                )
-        print("")
+                    print(
+                        f"  - {execution_statement} {YELLOW}{filename}{ENDC}:{BOLD}{linenumber}{ENDC}"
+                    )
+            print("")
+    except Exception as e:
+        print(f"# Error Detected in print_traces() - {e}")
+        exit()
 
 
 def flatten(l):
